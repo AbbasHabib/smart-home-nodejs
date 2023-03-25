@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="color:yellow;">HELOOOOO</h1>
+
+    <button lampNo="1" class="post-btn">Lamp 1</button>
+    <button lampNo="2" class="post-btn">Lamp 2</button>
+    <button lampNo="3" class="post-btn">Lamp 3</button>
+
+    <script>
+        const buttons = document.querySelectorAll('.post-btn');
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', async _ => {
+                console.log("clicked")
+                const id = btn.getAttribute("lampNo")
+                console.log(id)
+                console.log('Completed!')
+                try {
+                    const response = await fetch('http://192.168.43.157:3000/lamp/' + String(id), {
+                        method: 'p0ost'
+                    });
+                } catch (err) {
+                    console.error(`Error: ${err}`);
+                }
+                console.log('CompletedK!')
+            });
+        })
+
+    </script>
+</body>
+
+</html>
