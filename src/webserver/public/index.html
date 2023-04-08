@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Please Give us Bonus</h1>
+    <div class="container">
+        <h1>Smart Home Light!</h1>
+
+        <div>
+            <button lampNo="1" command="1" class="button-5 post-btn on-btn" role="button">ON Lamp &nbsp;<p style="color :#13005A;"> Blue</p></button>
+            <button lampNo="2" command="1" class="button-5 post-btn on-btn" role="button">ON Lamp &nbsp;<p style="color :#82CD47;"> Green</p></button>
+            <button lampNo="3" command="1" class="button-5 post-btn on-btn" role="button">ON Lamp &nbsp;<p style="color :#F0FF42;"> Yellow</p></button>
+        </div>
+
+        <div>
+            <button lampNo="1" command="0" class="button-5 post-btn off-btn" role="button">OFF Lamp &nbsp;<p style="color :#13005A;"> Blue</p></button>
+            <button lampNo="2" command="0" class="button-5 post-btn off-btn" role="button">OFF Lamp &nbsp;<p style="color :#82CD47;"> Green</p></button>
+            <button lampNo="3" command="0" class="button-5 post-btn off-btn" role="button">OFF Lamp &nbsp;<p style="color :#F0FF42;"> Yellow</p></button>
+        </div>
+    </div>
+    <script>
+        const buttons = document.querySelectorAll('.post-btn');
+
+        buttons.forEach((btn) => {
+            btn.addEventListener('click', async _ => {
+                console.log("clicked")
+                const id = btn.getAttribute("lampNo")
+                const command = btn.getAttribute("command")
+                console.log(id)
+                console.log('Completed!')
+                try {
+
+                    const response = await fetch('http://192.168.1.5:3000/lamp/' + String(id) + '/' + String(command), {
+                        method: 'post'
+                    }).then(res =>{
+
+                        console.log(res)
+                    },
+                    error =>{
+                        console.log(error);
+                    });
+                    } catch (err) {
+                    console.error(`Error: ${err}`);
+                }
+                
+            });
+        })
+
+    </script>
+</body>
+
+</html>
