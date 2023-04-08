@@ -1,5 +1,8 @@
 # SMART HOME SYSTEM USING NODE JS
 
+## system up and running
+https://user-images.githubusercontent.com/79010279/230731297-c81387a3-c3f4-4c51-b708-3c66e66f931b.mp4
+
 ### system diagram
 ![system_diag](./readme_imgs/sys_diag.png)
 
