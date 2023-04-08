@@ -10,8 +10,7 @@
 </head>
 
 <body>
-    <h1>Please Give us Bonus</h1>
-    <div class="container">
+        <div class="container">
         <h1>Smart Home Light!</h1>
 
         <div>
@@ -27,6 +26,7 @@
         </div>
     </div>
     <script>
+        const serverIp = '192.168.1.5'
         const buttons = document.querySelectorAll('.post-btn');
 
         buttons.forEach((btn) => {
@@ -38,7 +38,7 @@
                 console.log('Completed!')
                 try {
 
-                    const response = await fetch('http://192.168.1.5:3000/lamp/' + String(id) + '/' + String(command), {
+                    const response = await fetch('http://' + serverIp + ':3000/lamp/' + String(id) + '/' + String(command), {
                         method: 'post'
                     }).then(res =>{
 
