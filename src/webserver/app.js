@@ -20,10 +20,10 @@ app.get('/', (req, res) => {
 app.post('/lamp/:lampNumber/:command', (req, res) => {
 
     console.log("MMMMMMM");
-    var client = new net.Socket();
+    var esp_node = new net.Socket();
     try{
-        client.connect( ESP_port, ESP_ip);
-        client.on('error', (err) => {
+        esp_node.connect( ESP_port, ESP_ip);
+        esp_node.on('error', (err) => {
             console.log(err)
             console.log("err hanged")
         });
@@ -33,29 +33,29 @@ app.post('/lamp/:lampNumber/:command', (req, res) => {
         console.log("couldn't connect to socket")
         return
     }
-    client.on('connect', function () {
+    esp_node.on('connect', function () {
         // writing data to server
         try{
-            client.write(String(req.params.lampNumber) + '#' + String(req.params.command) + '\n');
+            esp_node.write(String(req.params.lampNumber) + '#' + String(req.params.command) + '\n');
         }
         catch(err){
             console.log("no socket connection")
         }
     });
 
-    client.setEncoding('utf8');
+    esp_node.setEncoding('utf8');
 
-    client.on('data', function(data) {
+    esp_node.on('data', function(data) {
         console.log('Received: ' + data);
         try{
-        client.destroy(); // kill client after server's response
+        esp_node.destroy(); // kill esp_node after server's response
         }
         catch(err){
             console.log("couldn't destroy socket")
         }
     });
     
-    client.on('close', function() {
+    esp_node.on('close', function() {
         console.log('Connection closed');
     });
 
